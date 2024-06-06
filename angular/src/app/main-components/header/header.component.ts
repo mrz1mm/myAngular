@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { SearchService } from '../../services/search.service';
-import { ToDoListService } from '../../services/to-do-list.service';
+import { Component, Inject } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -9,18 +8,10 @@ import { AuthService } from '../../auth/auth.service';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  constructor(
-    private searchService: SearchService,
-    private todolistService: ToDoListService,
-    private authService: AuthService
-  ) {}
+  @Inject(AuthService) private authSvc!: AuthService;
+  isLoggedIn$: Observable<boolean> = this.authSvc.isLoggedIn$;
 
-  onSearch(event: Event) {
-    const searchTerm = (event.target as HTMLInputElement).value;
-    this.searchService.setSearchTerm(searchTerm);
-    this.todolistService.setSearchTerm(searchTerm);
-  }
-
+  // mostra o nasconde il menu
   toggleNavbar() {
     const navbar = document.getElementById('navbarSupportedContent');
     if (navbar) {
@@ -28,7 +19,10 @@ export class HeaderComponent {
     }
   }
 
+  // effettua il logout
   logout() {
-    this.authService.logout();
+    this.authSvc.logout();
   }
+
+  onSearch($event: any) {}
 }
