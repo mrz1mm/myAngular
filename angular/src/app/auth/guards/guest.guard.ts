@@ -19,6 +19,7 @@ export class GuestGuard {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> {
     return this.authService.isLoggedIn$.pipe(
+      // trasformo il valore emesso dall'observable in un nuovo observable
       switchMap((isLoggedIn) => {
         if (!isLoggedIn) return of(this.router.createUrlTree(['/auth/login']));
         return of(true);

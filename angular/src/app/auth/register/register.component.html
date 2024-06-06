@@ -133,11 +133,11 @@
       </div>
     </div>
 
-    <button
-      (click)="register()"
-      class="btn btn-primary w-100 py-2"
-      type="submit"
-    >
+    <div class="text-center">
+      <p>Utente già registrato? <a routerLink="auth/login">Clicca qui!</a></p>
+    </div>
+
+    <button (click)="register()" class="btn btn-primary py-2" type="submit">
       Sign in
     </button>
   </form>

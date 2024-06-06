@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { iUser } from './interfaces/i-user';
 import { iAuthResponse } from './interfaces/i-auth-response';
 import { iAuthData } from './interfaces/i-auth-data';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,8 +21,8 @@ export class AuthService {
     this.autoLogin();
   }
 
-  loginUrl: string = 'http://localhost:3002/login';
-  registerUrl: string = 'http://localhost:3002/register';
+  loginUrl: string = `${environment.apiUrl}/login`;
+  registerUrl: string = `${environment.apiUrl}/register`;
 
   // metodo per registrare un nuovo utente
   register(newUser: Partial<iUser>): Observable<iAuthResponse> {
