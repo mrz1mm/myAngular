@@ -1,0 +1,144 @@
+<section class="form-signin w-100 m-auto">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <!-- Parte anagrafica -->
+    <div class="border p-3 mb-3">
+      <h2 class="h5 mb-3">Parte anagrafica</h2>
+
+      <!-- Name -->
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          placeholder="Inserisci il tuo nome"
+        />
+        <span *ngIf="isTouchedInvalid('name')">Devi inserire il nome</span>
+      </div>
+
+      <!-- Surname -->
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          id="surname"
+          formControlName="surname"
+          class="form-control"
+          placeholder="Inserisci il tuo cognome"
+          required
+        />
+      </div>
+
+      <!-- Gender -->
+      <div class="form-floating mb-3">
+        <select id="gender" formControlName="gender" class="form-control">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <label for="gender">Genere</label>
+      </div>
+
+      <!-- Date of birth -->
+      <div class="form-floating mb-3">
+        <input
+          type="date"
+          id="floatingDate"
+          formControlName="dateBirth"
+          class="form-control"
+          placeholder="Inserisci la tua data di nascita"
+          required
+        />
+        <label for="floatingDate">Data di nascita</label>
+      </div>
+
+      <!-- Biography -->
+      <div class="form-floating mb-3">
+        <textarea
+          id="floatingBiography"
+          formControlName="biography"
+          class="form-control"
+          placeholder="Inserisci la tua biografia"
+        ></textarea>
+        <label for="floatingBiography">Biografia</label>
+      </div>
+
+      <!-- User's image -->
+      <div class="form-floating mb-3">
+        <input
+          type="file"
+          id="floatingImage"
+          formControlName="image"
+          class="form-control"
+          placeholder="Inserisci la tua immagine"
+        />
+        <label for="floatingImage">Immagine</label>
+      </div>
+    </div>
+
+    <!-- Credenziali -->
+    <div class="border p-3 mb-3">
+      <h2 class="h5 mb-3">Credenziali</h2>
+
+      <!-- Username -->
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          id="floatingUsername"
+          formControlName="username"
+          class="form-control"
+          placeholder="Inserisci il tuo username"
+          required
+        />
+        <label for="floatingUsername">Username</label>
+      </div>
+
+      <!-- Email -->
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          placeholder="name@example.com"
+          required
+        />
+        <label for="email">Email address</label>
+      </div>
+
+      <!-- Password -->
+      <div class="form-floating mb-3">
+        <input
+          type="password"
+          id="floatingPassword"
+          formControlName="password"
+          class="form-control"
+          placeholder="Password"
+          required
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
+
+      <!-- Password confirm -->
+      <div class="form-floating mb-3">
+        <input
+          type="password"
+          id="passwordConfirm"
+          formControlName="passwordConfirm"
+          class="form-control"
+          placeholder="Inserisci nuovamente la tua password"
+          required
+        />
+        <label for="passwordConfirm">Conferma password</label>
+      </div>
+    </div>
+
+    <button
+      (click)="register()"
+      class="btn btn-primary w-100 py-2"
+      type="submit"
+    >
+      Sign in
+    </button>
+  </form>
+</section>
