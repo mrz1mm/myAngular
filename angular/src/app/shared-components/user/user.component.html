@@ -1,0 +1,32 @@
+<div class="container-fluid card mb-3 p-2">
+  <div class="row">
+    <div class="col-4 col-lg-3 d-none d-sm-block align-items-baseline">
+      <img
+        src="{{ userCard?.image }}"
+        class="img-fluid rounded-start"
+        alt="avatar img"
+      />
+    </div>
+    <div class="col-8 col-lg-9">
+      <div class="card-body ps-0">
+        <h5 class="card-title">
+          {{ userCard?.firstName }} {{ userCard?.lastName }}
+        </h5>
+        <p class="card-text">
+          <small class="text-body-secondary">{{ userCard?.title }}</small>
+        </p>
+      </div>
+      <div *ngFor="let todo of userCard?.todos">
+        <p
+          class="ps-2"
+          [ngClass]="{
+            borderGreen: todo.completed,
+            borderRed: !todo.completed
+          }"
+        >
+          {{ todo.todo }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

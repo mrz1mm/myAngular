@@ -1,0 +1,97 @@
+<header>
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">
+        <img
+          src="../../../assets/img/todo.jpg"
+          alt="To Do List"
+          class="d-inline-block align-top"
+        />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        (click)="toggleNavbar()"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              aria-current="page"
+              routerLink="/home"
+              routerLinkActive="active"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/completed"
+              routerLinkActive="active"
+              >Completed</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/users" routerLinkActive="active"
+              >Users</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/auth/register"
+              routerLinkActive="active"
+              >Register</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/auth/login"
+              routerLinkActive="active"
+              >Login</a
+            >
+          </li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              (input)="onSearch($event)"
+            />
+          </form>
+
+          <div class="flex-shrink-0 dropdown">
+            <a
+              href="#"
+              class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                id="profile"
+                src="https://media.licdn.com/dms/image/C5603AQFTTOGgZOp0fA/profile-displayphoto-shrink_800_800/0/1540802000219?e=1723075200&v=beta&t=FBTX6iAgXYlwcHB_M9Gusz4tb9svSnvBG38P6A8wXJw"
+                alt="mdo"
+                class="rounded-circle"
+              />
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end text-small shadow">
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" (click)="logout()">Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

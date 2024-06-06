@@ -1,0 +1,26 @@
+<div
+  id="cardContainer"
+  class="d-flex my-2"
+  [ngClass]="{
+    borderGreen: todosCard?.completed,
+    borderRed: !todosCard?.completed
+  }"
+>
+  <div class="ps-2">
+    <h5>{{ todosCard?.todo }}</h5>
+    <p>
+      Assigned to: {{ todosCard?.userId?.firstName }}
+      {{ todosCard?.userId?.lastName }}
+    </p>
+    <div class="d-flex">
+      <p class="mb-0">Completed:</p>
+      <input
+        id="checkbox"
+        type="checkbox"
+        class="ms-2"
+        (change)="toggleCheckbox($event)"
+        [checked]="todosCard?.completed"
+      />
+    </div>
+  </div>
+</div>
