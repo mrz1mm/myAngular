@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  @Inject(AuthService) private authSvc!: AuthService;
+  private authSvc: AuthService = Inject(AuthService);
   isLoggedIn$: Observable<boolean> = this.authSvc.isLoggedIn$;
 
   // mostra o nasconde il menu
@@ -23,6 +23,4 @@ export class HeaderComponent {
   logout() {
     this.authSvc.logout();
   }
-
-  onSearch($event: any) {}
 }
