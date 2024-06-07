@@ -91,6 +91,16 @@
       "filmId": 2,
       "userId": 1,
       "id": 2
+    },
+    {
+      "filmId": 1,
+      "userId": 1,
+      "id": 3
+    },
+    {
+      "filmId": 3,
+      "userId": 1,
+      "id": 4
     }
   ]
 }
