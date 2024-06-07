@@ -1,1 +1,17 @@
-<p>user works!</p>
+<div class="align-items-baseline">
+  <img
+    src="{{ userCard?.image }}"
+    class="img-fluid rounded-start"
+    alt="avatar img"
+  />
+</div>
+<div class="col-8 col-lg-9">
+  <div class="card-body ps-0">
+    <h5 class="card-title">
+      {{ userCard?.firstName }} {{ userCard?.lastName }}
+    </h5>
+    <p class="card-text">
+      <small class="text-body-secondary">{{ userCard?.title }}</small>
+    </p>
+  </div>
+</div>

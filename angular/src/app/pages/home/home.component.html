@@ -3,13 +3,18 @@
     <div class="col-12 my-5">
       <h2>All Films</h2>
     </div>
-    <div class="col-12" *ngFor="let film of filmsArray">
+
+    <div
+      class="col-12 col-sm-6 col-lg-3 col-xl-4"
+      *ngFor="let film of filmsArray"
+    >
       <app-card [filmsCard]="film"></app-card>
     </div>
     <div class="col-12 my-5">
       <h2>All Users</h2>
     </div>
-    <div class="col-12" *ngFor="let user of usersArray">
+
+    <div class="col" *ngFor="let user of usersArray">
       <ul>
         <li>{{ user.name }}</li>
       </ul>
