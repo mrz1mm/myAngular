@@ -23,6 +23,14 @@ export class HomeComponent implements OnInit {
       }
     });
 
+    this.userSvc.users$.subscribe((users) => {
+      if (users) {
+        this.usersArray = users;
+        console.log(this.usersArray);
+      }
+    });
+
     this.filmSvc.getAllFilms();
+    this.userSvc.getAllUsers();
   }
 }
