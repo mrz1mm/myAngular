@@ -1,7 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { iFilm } from '../interfaces/i-film';
-import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  map,
+  switchMap,
+  tap,
+  throwError,
+} from 'rxjs';
 import { environment } from '../../environments/environment';
 import { iFavouriteFilm } from '../interfaces/i-favourite-film';
 
@@ -66,13 +74,13 @@ export class FilmService {
   // metodo per aggiungere un film ai preferiti
   addFavouriteFilm(filmId: number, userId: number): Observable<void> {
     return this.http
-      .post<void>(this.favouriteFilmsUrl, { filmId, userId })
+      .post<iFavouriteFilm>(this.favouriteFilmsUrl, { filmId, userId })
       .pipe(
-        tap(() => {
-          const newFavouriteFilm: iFavouriteFilm = { filmId, userId };
+        tap((newFavouriteFilm) => {
           this.favouriteFilms.push(newFavouriteFilm); // Aggiungi il film ai preferiti nell'array locale
           this.favouriteFilmsSubject.next([...this.favouriteFilms]); // Aggiorna il BehaviorSubject
         }),
+        map(() => {}), // Trasforma il risultato in void
         catchError((error) =>
           throwError(
             () => new Error('Error adding favourite film:', error.message)
@@ -83,14 +91,29 @@ export class FilmService {
 
   // metodo per rimuovere un film dai preferiti
   removeFavouriteFilm(filmId: number, userId: number): Observable<void> {
+    // Cerca il film nei preferiti
     return this.http
-      .delete<void>(`${this.favouriteFilmsUrl}/${filmId}/${userId}`)
+      .get<iFavouriteFilm[]>(
+        `${this.favouriteFilmsUrl}?filmId=${filmId}&userId=${userId}`
+      )
       .pipe(
-        tap(() => {
-          this.favouriteFilms = this.favouriteFilms.filter(
-            (film) => film.filmId !== filmId || film.userId !== userId
-          ); // Rimuovi il film dai preferiti nell'array locale
-          this.favouriteFilmsSubject.next([...this.favouriteFilms]); // Aggiorna il BehaviorSubject
+        // Se il film è tra i preferiti, rimuovilo
+        switchMap((favouriteFilms) => {
+          const favouriteFilm = favouriteFilms[0];
+          if (favouriteFilm) {
+            return this.http
+              .delete<void>(`${this.favouriteFilmsUrl}/${favouriteFilm.id}`)
+              .pipe(
+                tap(() => {
+                  this.favouriteFilms = this.favouriteFilms.filter(
+                    (film) => film.filmId !== filmId || film.userId !== userId
+                  );
+                  this.favouriteFilmsSubject.next([...this.favouriteFilms]);
+                })
+              );
+          } else {
+            return throwError(() => new Error('Favourite film not found'));
+          }
         }),
         catchError((error) =>
           throwError(

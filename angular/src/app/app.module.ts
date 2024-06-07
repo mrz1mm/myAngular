@@ -10,7 +10,6 @@ import { HeaderComponent } from './main-components/header/header.component';
 
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/guards/auth.guard';
-import { authInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
