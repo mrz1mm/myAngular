@@ -102,4 +102,10 @@ export class AuthService {
   getCurrentUser(): iUser | null {
     return this.authSubject.value;
   }
+
+  // ottieni l'id dell'utente corrente
+  getCurrentUserId(): number | null {
+    const currentUser = this.getCurrentUser();
+    return currentUser ? currentUser.id : null;
+  }
 }

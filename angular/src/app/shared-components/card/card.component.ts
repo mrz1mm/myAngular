@@ -18,13 +18,14 @@ export class CardComponent implements OnInit {
   userId: number | null;
 
   constructor() {
-    this.userId = this.authSvc.getCurrentUser()?.id ?? null;
+    this.userId = this.authSvc.getCurrentUserId();
   }
 
   ngOnInit() {
     this.checkIfFavourite();
   }
 
+  // metodo per controllare se il film è tra i preferiti
   checkIfFavourite() {
     if (this.userId !== null) {
       this.filmSvc.getAllFavouriteFilms().subscribe((favouriteFilms) => {
@@ -36,32 +37,30 @@ export class CardComponent implements OnInit {
     }
   }
 
+  // metodo per aggiungere o rimuovere un film dai preferiti
   toggleFavourite(event: Event) {
     event.preventDefault();
-    if (this.userId === null) {
-      console.error('User is not logged in.');
-      return;
-    }
+
     if (this.isFavourite) {
       this.filmSvc
-        .removeFavouriteFilm(this.filmsCard.id, this.userId)
-        .subscribe(
-          () => {
+        .removeFavouriteFilm(this.filmsCard.id, this.userId!)
+        .subscribe({
+          next: () => {
             this.isFavourite = false;
           },
-          (error) => {
+          error: (error) => {
             console.error('Error removing favourite film:', error);
-          }
-        );
+          },
+        });
     } else {
-      this.filmSvc.addFavouriteFilm(this.filmsCard.id, this.userId).subscribe(
-        () => {
+      this.filmSvc.addFavouriteFilm(this.filmsCard.id, this.userId!).subscribe({
+        next: () => {
           this.isFavourite = true;
         },
-        (error) => {
+        error: (error) => {
           console.error('Error adding favourite film:', error);
-        }
-      );
+        },
+      });
     }
   }
 }

@@ -49,20 +49,18 @@ export class FilmService {
   }
 
   // metodo per ottenere tutti i film preferiti
-  getAllFavouriteFilms(): void {
-    this.http
-      .get<iFavouriteFilm[]>(this.favouriteFilmsUrl)
-      .pipe(
-        catchError((error) =>
-          throwError(
-            () => new Error('Error fetching favourite films:', error.message)
-          )
-        )
-      )
-      .subscribe((favouriteFilms) => {
+  getAllFavouriteFilms(): Observable<iFavouriteFilm[]> {
+    return this.http.get<iFavouriteFilm[]>(this.favouriteFilmsUrl).pipe(
+      tap((favouriteFilms) => {
         this.favouriteFilms = favouriteFilms;
         this.favouriteFilmsSubject.next(favouriteFilms);
-      });
+      }),
+      catchError((error) =>
+        throwError(
+          () => new Error('Error fetching favourite films:', error.message)
+        )
+      )
+    );
   }
 
   // metodo per aggiungere un film ai preferiti
