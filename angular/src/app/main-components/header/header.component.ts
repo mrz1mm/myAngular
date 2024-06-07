@@ -17,14 +17,6 @@ export class HeaderComponent {
     this.isLoggedIn$ = this.authSvc.isLoggedIn$;
   }
 
-  // mostra o nasconde il menu
-  toggleNavbar() {
-    const navbar = document.getElementById('navbarSupportedContent');
-    if (navbar) {
-      navbar.classList.toggle('show');
-    }
-  }
-
   // effettua il logout
   logout() {
     this.authSvc.logout();
