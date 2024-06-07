@@ -22,5 +22,8 @@
     <div class="col">
       <h5>Qui ci sono tutti i tuoi film preferiti:</h5>
     </div>
+    <div class="col-12" *ngFor="let film of favouriteFilmsArray">
+      <app-card [filmsCard]="film"></app-card>
+    </div>
   </div>
 </div>

@@ -32,7 +32,6 @@ export class ProfileComponent {
             console.log('Favorite Films:', this.appoggioArray);
           }
         });
-        console.log();
       }
     });
   }
@@ -42,7 +41,7 @@ export class ProfileComponent {
       .getFavouriteFilmsByCurrentUser()
       .subscribe((favouriteFilms) => {
         this.favouriteFilmsArray = favouriteFilms;
-        console.log('Favorite Films:', this.favouriteFilmsArray);
+        console.log('Favorite Filmsss:', this.favouriteFilmsArray);
       });
   }
 }

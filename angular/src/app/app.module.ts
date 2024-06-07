@@ -10,10 +10,9 @@ import { HeaderComponent } from './main-components/header/header.component';
 
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/guards/auth.guard';
-import { Card2Component } from './shared-components/card2/card2.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, Card2Component],
+  declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],

@@ -137,8 +137,8 @@ export class FilmService {
     const filteredFilms = this.films.filter((film) =>
       film.title?.toLowerCase().includes(lowerCaseSearchTerm)
     );
-    this.filmsSubject.next(filteredFilms); // Aggiorna il BehaviorSubject con i film filtrati
-    return this.filmsSubject.asObservable(); // Restituisci i film filtrati come Observable
+    this.filmsSubject.next(filteredFilms);
+    return this.filmsSubject.asObservable();
   }
 
   // Metodo per ottenere solo i film preferiti dell'utente attualmente loggato
