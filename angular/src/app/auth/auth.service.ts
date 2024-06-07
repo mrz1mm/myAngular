@@ -37,6 +37,7 @@ export class AuthService {
         localStorage.setItem('accessToken', JSON.stringify(data));
 
         this.autoLogout();
+        this.router.navigate(['/home']); // Redirezione dopo il login
       })
     );
   }

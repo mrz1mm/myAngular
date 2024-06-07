@@ -6,13 +6,15 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   public route: ActivatedRoute = Inject(ActivatedRoute);
-  private authSvc: AuthService = Inject(AuthService);
+  isLoggedIn$: Observable<boolean>;
 
-  isLoggedIn$: Observable<boolean> = this.authSvc.isLoggedIn$;
+  constructor(private authSvc: AuthService) {
+    this.isLoggedIn$ = this.authSvc.isLoggedIn$;
+  }
 
   links = [
     { title: 'One', fragment: 'one' },

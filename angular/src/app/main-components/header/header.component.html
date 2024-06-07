@@ -30,7 +30,10 @@
             >
           </li>
         </ul>
-        <div *ngIf="!isLoggedIn$" class="d-flex align-items-center">
+        <div
+          *ngIf="isLoggedIn$ | async; else loggedOut"
+          class="d-flex align-items-center"
+        >
           <form class="d-flex" role="search">
             <input
               class="form-control me-2"
@@ -68,17 +71,22 @@
             </div>
           </div>
         </div>
-        <div *ngIf="isLoggedIn$" class="d-flex">
-          <a class="nav-link" routerLink="/auth/login" routerLinkActive="active"
-            >Login</a
-          >
-          <a
-            class="nav-link ms-3"
-            routerLink="/auth/register"
-            routerLinkActive="active"
-            >Register</a
-          >
-        </div>
+        <ng-template #loggedOut>
+          <div class="d-flex">
+            <a
+              class="nav-link"
+              routerLink="/auth/login"
+              routerLinkActive="active"
+              >Login</a
+            >
+            <a
+              class="nav-link ms-3"
+              routerLink="/auth/register"
+              routerLinkActive="active"
+              >Register</a
+            >
+          </div>
+        </ng-template>
       </div>
     </div>
   </nav>
