@@ -142,11 +142,13 @@ export class FilmService {
         const favouriteFilms = this.favouriteFilms.filter(
           (film) => film.userId === user!.id
         );
+        console.log(user!.id);
         const favouriteFilmIds = favouriteFilms.map((film) => film.filmId);
         const favouriteFilmsData = this.films.filter((film) =>
           favouriteFilmIds.includes(film.id)
         );
         this.filmsSubject.next(favouriteFilmsData);
+        console.log(favouriteFilmsData);
         return favouriteFilmsData;
       })
     );

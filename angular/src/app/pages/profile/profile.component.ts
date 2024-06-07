@@ -21,15 +21,12 @@ export class ProfileComponent {
   favouriteFilmsArray: iFilm[] = [];
 
   ngOnInit() {
-    this.filmSvc.getFavouriteFilmsByCurrentUser().subscribe(
-      (favouriteFilms) => {
-        console.log(favouriteFilms); // Qui ottieni i dati effettivi dei film preferiti
-      },
-      (error) => {
-        console.error('Error fetching favourite films:', error);
-        // Gestire l'errore, ad esempio mostrando un messaggio all'utente
-      }
-    );
+    this.filmSvc
+      .getFavouriteFilmsByCurrentUser()
+      .subscribe((favouriteFilms) => {
+        this.favouriteFilmsArray = favouriteFilms;
+        console.log(this.favouriteFilmsArray);
+      });
 
     console.log(this.user);
   }
