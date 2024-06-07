@@ -2,60 +2,70 @@
   "users": [],
   "films": [
     {
+      "id": 1,
       "title": "La leggenda del drago",
       "description": "Un giovane guerriero deve affrontare un potente drago per salvare il suo regno.",
       "release_date": "2023-07-12",
       "image_url": "https://placedog.net/640/480?id=1"
     },
     {
+      "id": 2,
       "title": "Il mistero della foresta",
       "description": "Un gruppo di amici scopre una misteriosa foresta che nasconde segreti antichi.",
       "release_date": "2022-10-25",
       "image_url": "https://placedog.net/640/480?id=2"
     },
     {
+      "id": 3,
       "title": "L'ultimo sopravvissuto",
       "description": "Dopo un'apocalisse zombie, un uomo lotta per sopravvivere e trovare altri sopravvissuti.",
       "release_date": "2024-01-15",
       "image_url": "https://placedog.net/640/480?id=3"
     },
     {
+      "id": 4,
       "title": "Amore sotto le stelle",
       "description": "Due estranei si incontrano durante una notte stellata e iniziano una storia d'amore.",
       "release_date": "2021-06-30",
       "image_url": "https://placedog.net/640/480?id=4"
     },
     {
+      "id": 5,
       "title": "L'isola perduta",
       "description": "Un gruppo di naufraghi cerca di sopravvivere su un'isola deserta piena di pericoli.",
       "release_date": "2023-09-08",
       "image_url": "https://placedog.net/640/480?id=5"
     },
     {
+      "id": 6,
       "title": "Il viaggio nel tempo",
       "description": "Uno scienziato scopre il modo di viaggiare nel tempo e cerca di cambiare il passato.",
       "release_date": "2022-11-21",
       "image_url": "https://placedog.net/640/480?id=6"
     },
     {
+      "id": 7,
       "title": "La città dei robot",
       "description": "In un futuro distopico, una città è governata da robot e gli umani lottano per la libertà.",
       "release_date": "2023-05-14",
       "image_url": "https://placedog.net/640/480?id=7"
     },
     {
+      "id": 8,
       "title": "La guerra dei mondi",
       "description": "Alieni invadono la Terra e l'umanità deve unirsi per combattere e sopravvivere.",
       "release_date": "2022-08-19",
       "image_url": "https://placedog.net/640/480?id=8"
     },
     {
+      "id": 9,
       "title": "Il segreto del faraone",
       "description": "Un archeologo scopre un antico segreto nelle piramidi che cambia la storia.",
       "release_date": "2023-03-27",
       "image_url": "https://placedog.net/640/480?id=9"
     },
     {
+      "id": 10,
       "title": "La maledizione del vampiro",
       "description": "Un cacciatore di vampiri deve fermare un antico vampiro che minaccia l'umanità.",
       "release_date": "2024-02-10",

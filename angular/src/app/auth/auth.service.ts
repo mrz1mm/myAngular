@@ -97,4 +97,9 @@ export class AuthService {
   get isLoggedIn$(): Observable<boolean> {
     return this.user$.pipe(map((user) => !!user));
   }
+
+  // ottieni l'utente corrente
+  getCurrentUser(): iUser | null {
+    return this.authSubject.value;
+  }
 }
