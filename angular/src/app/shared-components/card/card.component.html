@@ -7,16 +7,17 @@
     />
   </a>
   <div class="card-body d-flex flex-column align-items-center">
-    <a routerLink="/filmDetail/{{ filmsCard.id }}">
-      <h5 class="card-title text-center">{{ filmsCard.title }}</h5></a
-    >
+    <div class="d-flex">
+      <a routerLink="/filmDetail/{{ filmsCard.id }}">
+        <h5 class="card-title text-center">{{ filmsCard.title }}</h5></a
+      >
+      <i
+        class="ms-2 bi"
+        [ngClass]="isFavourite ? 'bi-heart-fill text-danger' : 'bi-heart'"
+        (click)="toggleFavourite($event)"
+      ></i>
+    </div>
     <p class="card-text">{{ filmsCard.release_date }}</p>
     <p class="card-text">{{ filmsCard.description }}</p>
-    <i
-      class="bi"
-      [ngClass]="isFavourite ? 'bi-heart-fill text-danger' : 'bi-heart'"
-      (click)="toggleFavourite($event)"
-    ></i>
-    <button (click)="toggleFavourite($event)">preferito</button>
   </div>
 </div>
