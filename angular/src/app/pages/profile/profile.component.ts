@@ -29,19 +29,21 @@ export class ProfileComponent {
         this.filmSvc.favouriteFilms$.subscribe((favouriteFilms) => {
           if (favouriteFilms) {
             this.appoggioArray = favouriteFilms;
-            console.log('Favorite Films:', this.appoggioArray);
+            this.loadFavouriteFilmsDetails();
           }
         });
       }
     });
   }
 
-  loadFavouriteFilms() {
-    this.filmSvc
-      .getFavouriteFilmsByCurrentUser()
-      .subscribe((favouriteFilms) => {
-        this.favouriteFilmsArray = favouriteFilms;
-        console.log('Favorite Filmsss:', this.favouriteFilmsArray);
+  loadFavouriteFilmsDetails() {
+    this.favouriteFilmsArray = [];
+    this.appoggioArray.forEach((favFilm) => {
+      this.filmSvc.getFilmById(favFilm.filmId).subscribe((film) => {
+        if (film) {
+          this.favouriteFilmsArray.push(film);
+        }
       });
+    });
   }
 }

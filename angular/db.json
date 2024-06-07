@@ -88,19 +88,9 @@
   ],
   "favourite-films": [
     {
-      "filmId": 1,
-      "userId": 1,
-      "id": 1
-    },
-    {
       "filmId": 2,
       "userId": 1,
       "id": 2
-    },
-    {
-      "filmId": 3,
-      "userId": 1,
-      "id": 3
     }
   ]
 }

@@ -52,15 +52,11 @@ export class FilmService {
       });
   }
 
-  // metodo per ottenere un film in base all'id
-  getFilmById(id: number): Observable<iFilm> {
-    return this.http
-      .get<iFilm>(`${this.filmsUrl}/${id}`)
-      .pipe(
-        catchError((error) =>
-          throwError(() => new Error('Error fetching film:', error.message))
-        )
-      );
+  // Metodo per ottenere un film in base all'id
+  getFilmById(id: number): Observable<iFilm | undefined> {
+    return this.films$.pipe(
+      map((films) => films.find((film) => film.id === id))
+    );
   }
 
   // metodo per ottenere tutti i film preferiti
