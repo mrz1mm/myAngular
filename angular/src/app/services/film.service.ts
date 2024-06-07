@@ -128,13 +128,12 @@ export class FilmService {
   }
 
   // metodo per cercare un film
-  searchFilms(searchTerm: string): Observable<iFilm[]> {
+  searchFilms(searchTerm: string): void {
     const lowerCaseSearchTerm = searchTerm.toLowerCase();
     const filteredFilms = this.films.filter((film) =>
       film.title?.toLowerCase().includes(lowerCaseSearchTerm)
     );
     this.filmsSubject.next(filteredFilms);
-    return this.filmsSubject.asObservable();
   }
 
   // Metodo per ottenere solo i film preferiti dell'utente attualmente loggato
