@@ -1,1 +1,10 @@
-<p>home works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 my-5">
+      <h1>All Films</h1>
+    </div>
+    <div class="col-12" *ngFor="let film of filmsArray">
+      <app-card [filmsCard]="film"></app-card>
+    </div>
+  </div>
+</div>

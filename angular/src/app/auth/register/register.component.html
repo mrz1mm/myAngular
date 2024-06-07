@@ -14,6 +14,7 @@
           class="form-control"
           placeholder="Inserisci il tuo nome"
         />
+        <label for="name">Nome</label>
         <span *ngIf="isTouchedInvalid('name')">Devi inserire il nome</span>
       </div>
 
@@ -21,58 +22,68 @@
       <div class="form-floating mb-3">
         <input
           type="text"
-          id="surname"
           formControlName="surname"
           class="form-control"
           placeholder="Inserisci il tuo cognome"
-          required
         />
+        <label for="surname">Cognome</label>
+        <span *ngIf="isTouchedInvalid('surname')"
+          >Devi inserire il cognome</span
+        >
       </div>
 
       <!-- Gender -->
       <div class="form-floating mb-3">
-        <select id="gender" formControlName="gender" class="form-control">
+        <select formControlName="gender" class="form-control">
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
         </select>
         <label for="gender">Genere</label>
+        <span *ngIf="isTouchedInvalid('gender')"
+          >Devi selezionare il genere</span
+        >
       </div>
 
       <!-- Date of birth -->
       <div class="form-floating mb-3">
         <input
           type="date"
-          id="floatingDate"
           formControlName="dateBirth"
           class="form-control"
           placeholder="Inserisci la tua data di nascita"
-          required
         />
-        <label for="floatingDate">Data di nascita</label>
+        <label for="dateBirth">Data di nascita</label>
+        <span *ngIf="isTouchedInvalid('dateBirth')"
+          >Devi inserire la data di nascita</span
+        >
       </div>
 
       <!-- Biography -->
       <div class="form-floating mb-3">
         <textarea
-          id="floatingBiography"
           formControlName="biography"
           class="form-control"
           placeholder="Inserisci la tua biografia"
         ></textarea>
-        <label for="floatingBiography">Biografia</label>
+        <label for="biography">Biografia</label>
+        <span *ngIf="isTouchedInvalid('biography')"
+          >Devi inserire la biografia</span
+        >
       </div>
 
       <!-- User's image -->
       <div class="form-floating mb-3">
         <input
-          type="file"
-          id="floatingImage"
-          formControlName="image"
+          type="text"
+          formControlName="userImage"
           class="form-control"
           placeholder="Inserisci la tua immagine"
         />
-        <label for="floatingImage">Immagine</label>
+        <label for="userImage">Immagine</label>
+        <span *ngIf="isTouchedInvalid('userImage')"
+          >Devi inserire l'immagine</span
+        >
       </div>
     </div>
 
@@ -84,52 +95,64 @@
       <div class="form-floating mb-3">
         <input
           type="text"
-          id="floatingUsername"
           formControlName="username"
           class="form-control"
           placeholder="Inserisci il tuo username"
-          required
         />
-        <label for="floatingUsername">Username</label>
+        <label for="username">Username</label>
+        <span *ngIf="isTouchedInvalid('username')"
+          >Devi inserire l'username</span
+        >
       </div>
 
       <!-- Email -->
       <div class="form-floating mb-3">
         <input
           type="email"
-          id="email"
           formControlName="email"
           class="form-control"
           placeholder="name@example.com"
-          required
         />
         <label for="email">Email address</label>
+        <span *ngIf="isTouchedInvalid('email')">Devi inserire l'email</span>
+        <span *ngIf="emailInvalid">L'email inserita non è valida</span>
       </div>
 
       <!-- Password -->
       <div class="form-floating mb-3">
         <input
           type="password"
-          id="floatingPassword"
           formControlName="password"
           class="form-control"
           placeholder="Password"
-          required
         />
-        <label for="floatingPassword">Password</label>
+        <label for="password">Password</label>
+        <span *ngIf="isTouchedInvalid('password')"
+          >Devi inserire la password</span
+        >
+        <span *ngIf="passwordInvalid"
+          >La password deve contenere almeno una lettera maiuscola, una
+          minuscola, un numero e un carattere speciale, e deve essere lunga
+          almeno 8 caratteri</span
+        >
       </div>
 
       <!-- Password confirm -->
       <div class="form-floating mb-3">
         <input
           type="password"
-          id="passwordConfirm"
-          formControlName="passwordConfirm"
+          formControlName="confirmPassword"
           class="form-control"
           placeholder="Inserisci nuovamente la tua password"
-          required
         />
-        <label for="passwordConfirm">Conferma password</label>
+        <label for="confirmPassword">Conferma password</label>
+        <span *ngIf="isTouchedInvalid('confirmPassword')"
+          >Le password devono corrispondere</span
+        >
+        <span *ngIf="passwordsMismatch"
+          >Le password non corrispondono. Per favore, inserisci la stessa
+          password in entrambi i campi</span
+        >
       </div>
     </div>
 
@@ -137,8 +160,6 @@
       <p>Utente già registrato? <a routerLink="auth/login">Clicca qui!</a></p>
     </div>
 
-    <button (click)="register()" class="btn btn-primary py-2" type="submit">
-      Sign in
-    </button>
+    <button class="btn btn-primary py-2" type="submit">Sign in</button>
   </form>
 </section>

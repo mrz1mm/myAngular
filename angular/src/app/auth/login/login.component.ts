@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { iAuthData } from '../interfaces/i-auth-data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,7 @@ import { iAuthData } from '../interfaces/i-auth-data';
 })
 export class LoginComponent {
   private authSvc = inject(AuthService);
+  private router = inject(Router);
 
   authData: iAuthData = {
     email: '',
@@ -16,8 +18,13 @@ export class LoginComponent {
   };
 
   login() {
-    this.authSvc.login(this.authData).subscribe((data) => {
-      console.log(data);
+    this.authSvc.login(this.authData).subscribe({
+      next: (data) => {
+        console.log(data);
+        if (data.success) {
+          this.router.navigate(['/home']);
+        }
+      },
     });
   }
 }

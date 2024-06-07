@@ -1,1 +1,8 @@
-<p>card works!</p>
+<div id="cardContainer" class="d-flex my-2">
+  <img [src]="filmsCard.image_url" alt="{{ filmsCard.title }}" class="me-3" />
+  <div class="ps-2">
+    <h5>{{ filmsCard.title }}</h5>
+    <p>{{ filmsCard.description }}</p>
+    <p>Release Date: {{ filmsCard.release_date }}</p>
+  </div>
+</div>

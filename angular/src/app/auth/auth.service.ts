@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { iUser } from './interfaces/i-user';
 import { iAuthResponse } from './interfaces/i-auth-response';
 import { iAuthData } from './interfaces/i-auth-data';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
@@ -80,7 +80,10 @@ export class AuthService {
       accessData.accessToken
     );
     const expMs = expDate?.getTime()! - new Date().getTime();
-    setTimeout(this.logout, expMs);
+
+    setTimeout(() => {
+      this.logout();
+    }, expMs);
   }
 
   // metodo per verificare se il token è valido

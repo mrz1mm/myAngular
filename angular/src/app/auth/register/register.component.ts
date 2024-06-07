@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss',
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
   private fb = inject(FormBuilder);
@@ -16,6 +16,9 @@ export class RegisterComponent {
 
   form!: FormGroup;
   user: Partial<iUser> = {};
+  emailInvalid = false;
+  passwordInvalid = false;
+  passwordsMismatch = false;
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -26,10 +29,22 @@ export class RegisterComponent {
       biography: this.fb.control(null, [Validators.required]),
       userImage: this.fb.control(null, [Validators.required]),
       username: this.fb.control(null, [Validators.required]),
-      email: this.fb.control(null, [Validators.required]),
+      email: this.fb.control(null, [Validators.required, Validators.email]),
       password: this.fb.control(null, [Validators.required]),
       confirmPassword: this.fb.control(null, [Validators.required]),
     });
+  }
+
+  // Testare il pattern della password
+  pswTest(): void {
+    const testPassword = 'CiaoCiao.88$';
+    const isPasswordPatternValid = this.validatePassword(testPassword);
+    console.log(
+      'Test Password:',
+      testPassword,
+      'Is Valid:',
+      isPasswordPatternValid
+    );
   }
 
   // Metodo per la validazione dell'email
@@ -41,9 +56,26 @@ export class RegisterComponent {
 
   // Metodo per la validazione della password
   validatePassword(password: string): boolean {
-    const passwordPattern: RegExp =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return passwordPattern.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasDigit = /\d/.test(password);
+    const hasSpecialChar = /[@$!%*?&]/.test(password);
+    const isValidLength = password.length >= 8;
+
+    console.log('Password:', password);
+    console.log('Has Lowercase:', hasLowercase);
+    console.log('Has Uppercase:', hasUppercase);
+    console.log('Has Digit:', hasDigit);
+    console.log('Has Special Char:', hasSpecialChar);
+    console.log('Is Valid Length:', isValidLength);
+
+    return (
+      hasLowercase &&
+      hasUppercase &&
+      hasDigit &&
+      hasSpecialChar &&
+      isValidLength
+    );
   }
 
   isTouchedInvalid(fieldName: string): boolean | undefined {
@@ -60,6 +92,10 @@ export class RegisterComponent {
   }
 
   onSubmit(): void {
+    this.emailInvalid = false;
+    this.passwordInvalid = false;
+    this.passwordsMismatch = false;
+
     if (this.form.valid) {
       const { email, password, confirmPassword } = this.form.value;
       const isEmailValid: boolean = this.validateEmail(email);
@@ -69,19 +105,30 @@ export class RegisterComponent {
       if (isEmailValid && isPasswordValid && passwordsMatch) {
         this.register();
       } else {
-        let errorMessage = '';
         if (!isEmailValid) {
-          errorMessage += "L'email inserita non è valida. ";
+          this.emailInvalid = true;
         }
         if (!isPasswordValid) {
-          errorMessage +=
-            'La password deve contenere almeno una lettera maiuscola, una minuscola, un numero e un carattere speciale, e deve essere lunga almeno 8 caratteri. ';
+          this.passwordInvalid = true;
+          console.log('Password validation failed:', password);
         }
         if (!passwordsMatch) {
-          errorMessage +=
-            'Le password non corrispondono. Per favore, inserisci la stessa password in entrambi i campi.';
+          this.passwordsMismatch = true;
+          console.log('Passwords do not match:', password, confirmPassword);
         }
-        console.log(errorMessage);
+        console.log('Form validation errors');
+        this.pswTest();
+      }
+    } else {
+      console.log('Form is invalid');
+      for (const controlName in this.form.controls) {
+        if (this.form.controls.hasOwnProperty(controlName)) {
+          const control = this.form.controls[controlName];
+          console.log(`${controlName}: ${control.status}`);
+          if (control.errors) {
+            console.log(`${controlName} errors:`, control.errors);
+          }
+        }
       }
     }
   }
