@@ -7,11 +7,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './main-components/footer/footer.component';
 import { HeaderComponent } from './main-components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

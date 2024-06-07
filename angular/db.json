@@ -1,5 +1,19 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "zimone17@gmail.com",
+      "password": "$2a$10$bbAm5wXcRh0eqftBNRsDY.ssBMHydR8NmiT1bUGuwGd6ovgoaS3BK",
+      "name": "Simone",
+      "surname": "Attanasio",
+      "gender": "male",
+      "dateBirth": "1995-10-25",
+      "biography": "blablabla",
+      "userImage": "https://static.wikia.nocookie.net/p__/images/7/79/Ted_from_Ted_movie_image.png/revision/latest?cb=20230813230009&path-prefix=protagonist",
+      "username": "mr_z1m",
+      "confirmPassword": "CiaoCiao.88$",
+      "id": 1
+    }
+  ],
   "films": [
     {
       "id": 1,

@@ -30,7 +30,7 @@
             >
           </li>
         </ul>
-        <div *ngIf="isLoggedIn$" class="d-flex align-items-center">
+        <div *ngIf="!isLoggedIn$" class="d-flex align-items-center">
           <form class="d-flex" role="search">
             <input
               class="form-control me-2"
@@ -68,7 +68,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="!isLoggedIn$" class="d-flex">
+        <div *ngIf="isLoggedIn$" class="d-flex">
           <a class="nav-link" routerLink="/auth/login" routerLinkActive="active"
             >Login</a
           >

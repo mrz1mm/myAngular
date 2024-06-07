@@ -29,7 +29,7 @@ export class RegisterComponent {
       biography: this.fb.control(null, [Validators.required]),
       userImage: this.fb.control(null, [Validators.required]),
       username: this.fb.control(null, [Validators.required]),
-      email: this.fb.control(null, [Validators.required, Validators.email]),
+      email: this.fb.control(null, [Validators.required]),
       password: this.fb.control(null, [Validators.required]),
       confirmPassword: this.fb.control(null, [Validators.required]),
     });
