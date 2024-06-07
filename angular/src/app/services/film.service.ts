@@ -32,6 +32,11 @@ export class FilmService {
   filmsUrl: string = `${environment.apiUrl}/films`;
   favouriteFilmsUrl: string = `${environment.apiUrl}/favourite-films`;
 
+  constructor() {
+    this.getAllFilms();
+    this.getAllFavouriteFilms().subscribe();
+  }
+
   // metodo per ottenere tutti i film
   getAllFilms(): void {
     this.http
@@ -64,6 +69,7 @@ export class FilmService {
       tap((favouriteFilms) => {
         this.favouriteFilms = favouriteFilms;
         this.favouriteFilmsSubject.next(favouriteFilms);
+        console.log('service');
       }),
       catchError((error) =>
         throwError(

@@ -5,6 +5,7 @@ import { UsersService } from '../../services/users.service';
 import { iUser } from '../../auth/interfaces/i-user';
 import { SearchService } from '../../services/search.service';
 import { iFilm } from '../../interfaces/i-film';
+import { iFavouriteFilm } from '../../interfaces/i-favourite-film';
 
 @Component({
   selector: 'app-profile',
@@ -18,16 +19,30 @@ export class ProfileComponent {
   private authSvc = inject(AuthService);
 
   user: iUser | null = this.authSvc.getCurrentUser();
+  appoggioArray: iFavouriteFilm[] = [];
   favouriteFilmsArray: iFilm[] = [];
 
   ngOnInit() {
+    this.authSvc.user$.subscribe((user) => {
+      if (user) {
+        this.user = user;
+        this.filmSvc.favouriteFilms$.subscribe((favouriteFilms) => {
+          if (favouriteFilms) {
+            this.appoggioArray = favouriteFilms;
+            console.log('Favorite Films:', this.appoggioArray);
+          }
+        });
+        console.log();
+      }
+    });
+  }
+
+  loadFavouriteFilms() {
     this.filmSvc
       .getFavouriteFilmsByCurrentUser()
       .subscribe((favouriteFilms) => {
         this.favouriteFilmsArray = favouriteFilms;
-        console.log(this.favouriteFilmsArray);
+        console.log('Favorite Films:', this.favouriteFilmsArray);
       });
-
-    console.log(this.user);
   }
 }

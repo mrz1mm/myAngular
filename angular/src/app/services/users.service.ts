@@ -11,6 +11,10 @@ import { environment } from '../../environments/environment';
 export class UsersService {
   private http = inject(HttpClient);
 
+  constructor() {
+    this.getAllUsers();
+  }
+
   private usersSubject = new BehaviorSubject<iUser[]>([]);
   users$ = this.usersSubject.asObservable();
   private usersArray: iUser[] = [];

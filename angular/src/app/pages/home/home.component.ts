@@ -29,8 +29,5 @@ export class HomeComponent implements OnInit {
         console.log(this.usersArray);
       }
     });
-
-    this.filmSvc.getAllFilms();
-    this.userSvc.getAllUsers();
   }
 }
