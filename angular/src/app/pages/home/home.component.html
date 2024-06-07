@@ -19,5 +19,9 @@
         <li>{{ user.name }}</li>
       </ul>
     </div>
+
+    <div class="col" *ngFor="let user of usersArray">
+      <app-user [userCard]="user"></app-user>
+    </div>
   </div>
 </div>

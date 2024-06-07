@@ -1,6 +1,6 @@
-<div class="align-items-baseline">
+<div class="align-items-baseline" ngIf="userCard">
   <img
-    src="{{ userCard?.image }}"
+    src="{{ userCard.userImage }}"
     class="img-fluid rounded-start"
     alt="avatar img"
   />
@@ -8,10 +8,10 @@
 <div class="col-8 col-lg-9">
   <div class="card-body ps-0">
     <h5 class="card-title">
-      {{ userCard?.firstName }} {{ userCard?.lastName }}
+      {{ userCard.username }}
     </h5>
     <p class="card-text">
-      <small class="text-body-secondary">{{ userCard?.title }}</small>
+      <small class="text-body-secondary">{{ userCard.name }}</small>
     </p>
   </div>
 </div>
