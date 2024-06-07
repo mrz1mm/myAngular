@@ -1,1 +1,27 @@
-<p>profile works!</p>
+<div class="container" *ngIf="user">
+  <div class="row">
+    <div class="col">
+      <div>
+        <img [src]="user.userImage" alt="User Image" style="max-width: 200px" />
+        <h3>Ciao {{ user.name }},</h3>
+        <h5>ecco un riepilogo dei tuoi dati:</h5>
+      </div>
+      <div>
+        <p><strong>Nome:</strong> {{ user.name }}</p>
+        <p><strong>Cognome:</strong> {{ user.surname }}</p>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Data di nascita:</strong> {{ user.dateBirth }}</p>
+        <p><strong>Genere:</strong> {{ user.gender }}</p>
+        <p><strong>Biografia:</strong> {{ user.biography }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col">
+      <h5>Qui ci sono tutti i tuoi film preferiti:</h5>
+      <div class="col"></div>
+    </div>
+  </div>
+</div>

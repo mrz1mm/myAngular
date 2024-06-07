@@ -109,4 +109,10 @@ export class AuthService {
     const currentUser = this.getCurrentUser();
     return currentUser ? currentUser.id : null;
   }
+
+  // ottieni il nome dell'utente corrente
+  getCurrentUserName(): string | null {
+    const currentUser = this.getCurrentUser();
+    return currentUser ? currentUser.name : null;
+  }
 }

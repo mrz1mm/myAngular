@@ -12,12 +12,14 @@ import {
 } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { iFavouriteFilm } from '../interfaces/i-favourite-film';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FilmService {
   private http = inject(HttpClient);
+  private authSvc = inject(AuthService);
 
   private filmsSubject = new BehaviorSubject<iFilm[]>([]);
   films$ = this.filmsSubject.asObservable();
@@ -131,5 +133,22 @@ export class FilmService {
     );
     this.filmsSubject.next(filteredFilms); // Aggiorna il BehaviorSubject con i film filtrati
     return this.filmsSubject.asObservable(); // Restituisci i film filtrati come Observable
+  }
+
+  // Metodo per ottenere solo i film preferiti dell'utente attualmente loggato
+  getFavouriteFilmsByCurrentUser(): Observable<iFilm[]> {
+    return this.authSvc.user$.pipe(
+      map((user) => {
+        const favouriteFilms = this.favouriteFilms.filter(
+          (film) => film.userId === user!.id
+        );
+        const favouriteFilmIds = favouriteFilms.map((film) => film.filmId);
+        const favouriteFilmsData = this.films.filter((film) =>
+          favouriteFilmIds.includes(film.id)
+        );
+        this.filmsSubject.next(favouriteFilmsData);
+        return favouriteFilmsData;
+      })
+    );
   }
 }
