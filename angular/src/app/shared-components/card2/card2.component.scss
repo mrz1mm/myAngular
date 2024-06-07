@@ -1,0 +1,22 @@
+a {
+  text-decoration: none;
+}
+.card {
+  border: none;
+
+  img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+  }
+
+  span {
+    border-radius: 20%;
+    padding-inline: 0.5rem;
+    padding-block: 0.25rem;
+  }
+
+  .bi {
+    color: black;
+  }
+}
