@@ -1,5 +1,14 @@
-img {
-  height: 200px;
-  width: 200px;
-  border-radius: 5%;
+.container {
+  min-height: 80vh;
+  #userDetail {
+    p {
+      line-height: 1.8;
+    }
+  }
+
+  img {
+    height: 200px;
+    width: 200px;
+    border-radius: 5%;
+  }
 }

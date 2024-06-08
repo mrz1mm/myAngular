@@ -9,7 +9,7 @@
             class="d-inline-block align-top"
           />
         </a>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="d-none d-sm-block navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a
               class="nav-link"
@@ -38,7 +38,7 @@
             <a routerLink="/profile">
               <img
                 id="profile"
-                src="https://media.licdn.com/dms/image/C5603AQFTTOGgZOp0fA/profile-displayphoto-shrink_800_800/0/1540802000219?e=1723075200&v=beta&t=FBTX6iAgXYlwcHB_M9Gusz4tb9svSnvBG38P6A8wXJw"
+                [src]="user?.userImage"
                 alt="mdo"
                 class="rounded-circle"
               />

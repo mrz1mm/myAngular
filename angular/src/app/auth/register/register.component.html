@@ -1,165 +1,179 @@
-<section class="form-signin m-auto mt-5">
-  <form (ngSubmit)="onSubmit()" [formGroup]="form">
-    <h1 class="h3 text-center mb-3 fw-normal">REGISTRATI</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col col-md-10 col-lg-8">
+      <section class="form-signin m-auto mt-5">
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
+          <h1 class="h3 text-center mb-3 fw-normal">REGISTRATI</h1>
 
-    <!-- Parte anagrafica -->
-    <div class="border p-3 mb-3">
-      <h2 class="h5 mb-3">Parte anagrafica</h2>
+          <!-- Parte anagrafica -->
+          <div class="border p-3 mb-3">
+            <h2 class="h5 mb-3">Parte anagrafica</h2>
 
-      <!-- Name -->
-      <div class="form-floating mb-3">
-        <input
-          type="text"
-          formControlName="name"
-          class="form-control"
-          placeholder="Inserisci il tuo nome"
-        />
-        <label for="name">Nome</label>
-        <span *ngIf="isTouchedInvalid('name')">Devi inserire il nome</span>
-      </div>
+            <!-- Name -->
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                formControlName="name"
+                class="form-control"
+                placeholder="Inserisci il tuo nome"
+              />
+              <label for="name">Nome</label>
+              <span *ngIf="isTouchedInvalid('name')"
+                >Devi inserire il nome</span
+              >
+            </div>
 
-      <!-- Surname -->
-      <div class="form-floating mb-3">
-        <input
-          type="text"
-          formControlName="surname"
-          class="form-control"
-          placeholder="Inserisci il tuo cognome"
-        />
-        <label for="surname">Cognome</label>
-        <span *ngIf="isTouchedInvalid('surname')"
-          >Devi inserire il cognome</span
-        >
-      </div>
+            <!-- Surname -->
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                formControlName="surname"
+                class="form-control"
+                placeholder="Inserisci il tuo cognome"
+              />
+              <label for="surname">Cognome</label>
+              <span *ngIf="isTouchedInvalid('surname')"
+                >Devi inserire il cognome</span
+              >
+            </div>
 
-      <!-- Gender -->
-      <div class="form-floating mb-3">
-        <select formControlName="gender" class="form-control">
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
-        <label for="gender">Genere</label>
-        <span *ngIf="isTouchedInvalid('gender')"
-          >Devi selezionare il genere</span
-        >
-      </div>
+            <!-- Gender -->
+            <div class="form-floating mb-3">
+              <select formControlName="gender" class="form-control">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+              <label for="gender">Genere</label>
+              <span *ngIf="isTouchedInvalid('gender')"
+                >Devi selezionare il genere</span
+              >
+            </div>
 
-      <!-- Date of birth -->
-      <div class="form-floating mb-3">
-        <input
-          type="date"
-          formControlName="dateBirth"
-          class="form-control"
-          placeholder="Inserisci la tua data di nascita"
-        />
-        <label for="dateBirth">Data di nascita</label>
-        <span *ngIf="isTouchedInvalid('dateBirth')"
-          >Devi inserire la data di nascita</span
-        >
-      </div>
+            <!-- Date of birth -->
+            <div class="form-floating mb-3">
+              <input
+                type="date"
+                formControlName="dateBirth"
+                class="form-control"
+                placeholder="Inserisci la tua data di nascita"
+              />
+              <label for="dateBirth">Data di nascita</label>
+              <span *ngIf="isTouchedInvalid('dateBirth')"
+                >Devi inserire la data di nascita</span
+              >
+            </div>
 
-      <!-- Biography -->
-      <div class="form-floating mb-3">
-        <textarea
-          formControlName="biography"
-          class="form-control"
-          placeholder="Inserisci la tua biografia"
-        ></textarea>
-        <label for="biography">Biografia</label>
-        <span *ngIf="isTouchedInvalid('biography')"
-          >Devi inserire la biografia</span
-        >
-      </div>
+            <!-- Biography -->
+            <div class="form-floating mb-3">
+              <textarea
+                formControlName="biography"
+                class="form-control"
+                placeholder="Inserisci la tua biografia"
+              ></textarea>
+              <label for="biography">Biografia</label>
+              <span *ngIf="isTouchedInvalid('biography')"
+                >Devi inserire la biografia</span
+              >
+            </div>
 
-      <!-- User's image -->
-      <div class="form-floating mb-3">
-        <input
-          type="text"
-          formControlName="userImage"
-          class="form-control"
-          placeholder="Inserisci la tua immagine"
-        />
-        <label for="userImage">Immagine</label>
-        <span *ngIf="isTouchedInvalid('userImage')"
-          >Devi inserire l'immagine</span
-        >
-      </div>
+            <!-- User's image -->
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                formControlName="userImage"
+                class="form-control"
+                placeholder="Inserisci la tua immagine"
+              />
+              <label for="userImage">Immagine</label>
+              <span *ngIf="isTouchedInvalid('userImage')"
+                >Devi inserire l'immagine</span
+              >
+            </div>
+          </div>
+
+          <!-- Credenziali -->
+          <div class="border p-3 mb-3">
+            <h2 class="h5 mb-3">Credenziali</h2>
+
+            <!-- Username -->
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                formControlName="username"
+                class="form-control"
+                placeholder="Inserisci il tuo username"
+              />
+              <label for="username">Username</label>
+              <span *ngIf="isTouchedInvalid('username')"
+                >Devi inserire l'username</span
+              >
+            </div>
+
+            <!-- Email -->
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                formControlName="email"
+                class="form-control"
+                placeholder="name@example.com"
+              />
+              <label for="email">Email address</label>
+              <span *ngIf="isTouchedInvalid('email')"
+                >Devi inserire l'email</span
+              >
+              <span *ngIf="emailInvalid">L'email inserita non è valida</span>
+            </div>
+
+            <!-- Password -->
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                formControlName="password"
+                class="form-control"
+                placeholder="Password"
+              />
+              <label for="password">Password</label>
+              <span *ngIf="isTouchedInvalid('password')"
+                >Devi inserire la password</span
+              >
+              <span *ngIf="passwordInvalid"
+                >La password deve contenere almeno una lettera maiuscola, una
+                minuscola, un numero e un carattere speciale, e deve essere
+                lunga almeno 8 caratteri</span
+              >
+            </div>
+
+            <!-- Password confirm -->
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                formControlName="confirmPassword"
+                class="form-control"
+                placeholder="Inserisci nuovamente la tua password"
+              />
+              <label for="confirmPassword">Conferma password</label>
+              <span *ngIf="isTouchedInvalid('confirmPassword')"
+                >Le password devono corrispondere</span
+              >
+              <span *ngIf="passwordsMismatch"
+                >Le password non corrispondono. Per favore, inserisci la stessa
+                password in entrambi i campi</span
+              >
+            </div>
+          </div>
+
+          <div class="text-center">
+            <p>
+              Utente già registrato? <a routerLink="/auth/login">Clicca qui!</a>
+            </p>
+          </div>
+
+          <button class="btn btn-primary w-100 py-2 mb-5" type="submit">
+            Registrati!
+          </button>
+        </form>
+      </section>
     </div>
-
-    <!-- Credenziali -->
-    <div class="border p-3 mb-3">
-      <h2 class="h5 mb-3">Credenziali</h2>
-
-      <!-- Username -->
-      <div class="form-floating mb-3">
-        <input
-          type="text"
-          formControlName="username"
-          class="form-control"
-          placeholder="Inserisci il tuo username"
-        />
-        <label for="username">Username</label>
-        <span *ngIf="isTouchedInvalid('username')"
-          >Devi inserire l'username</span
-        >
-      </div>
-
-      <!-- Email -->
-      <div class="form-floating mb-3">
-        <input
-          type="email"
-          formControlName="email"
-          class="form-control"
-          placeholder="name@example.com"
-        />
-        <label for="email">Email address</label>
-        <span *ngIf="isTouchedInvalid('email')">Devi inserire l'email</span>
-        <span *ngIf="emailInvalid">L'email inserita non è valida</span>
-      </div>
-
-      <!-- Password -->
-      <div class="form-floating mb-3">
-        <input
-          type="password"
-          formControlName="password"
-          class="form-control"
-          placeholder="Password"
-        />
-        <label for="password">Password</label>
-        <span *ngIf="isTouchedInvalid('password')"
-          >Devi inserire la password</span
-        >
-        <span *ngIf="passwordInvalid"
-          >La password deve contenere almeno una lettera maiuscola, una
-          minuscola, un numero e un carattere speciale, e deve essere lunga
-          almeno 8 caratteri</span
-        >
-      </div>
-
-      <!-- Password confirm -->
-      <div class="form-floating mb-3">
-        <input
-          type="password"
-          formControlName="confirmPassword"
-          class="form-control"
-          placeholder="Inserisci nuovamente la tua password"
-        />
-        <label for="confirmPassword">Conferma password</label>
-        <span *ngIf="isTouchedInvalid('confirmPassword')"
-          >Le password devono corrispondere</span
-        >
-        <span *ngIf="passwordsMismatch"
-          >Le password non corrispondono. Per favore, inserisci la stessa
-          password in entrambi i campi</span
-        >
-      </div>
-    </div>
-
-    <div class="text-center">
-      <p>Utente già registrato? <a routerLink="/auth/login">Clicca qui!</a></p>
-    </div>
-
-    <button class="btn btn-primary py-2" type="submit">Sign in</button>
-  </form>
-</section>
+  </div>
+</div>

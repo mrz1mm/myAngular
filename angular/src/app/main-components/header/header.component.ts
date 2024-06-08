@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { SearchService } from '../../services/search.service';
 import { FilmService } from '../../services/film.service';
+import { iUser } from '../../auth/interfaces/i-user';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,8 @@ export class HeaderComponent {
   ) {
     this.isLoggedIn$ = this.authSvc.isLoggedIn$;
   }
+
+  user: iUser | null = this.authSvc.getCurrentUser();
 
   // mostra o nasconde il menu
   toggleNavbar() {

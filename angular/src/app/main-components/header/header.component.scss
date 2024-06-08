@@ -1,11 +1,15 @@
-li a {
-  color: black;
-}
+.navbar {
+  height: 6vh;
+  li a {
+    color: black;
+  }
 
-img {
-  height: 50px;
-}
+  img {
+    height: 50px;
+    width: 50px;
+  }
 
-.active {
-  font-weight: bold;
+  .active {
+    font-weight: bold;
+  }
 }

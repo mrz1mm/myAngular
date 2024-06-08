@@ -4,11 +4,11 @@
       <h3>Ciao {{ user.name }},</h3>
       <h5>ecco un riepilogo dei tuoi dati:</h5>
     </div>
-    <div class="col d-flex my-5">
-      <div class="d-flex flex-column align-items-center">
+    <div class="col d-flex flex-column flex-sm-row mb-5">
+      <div class="d-flex justify-content-start justify-content-sm-center me-4">
         <img [src]="user.userImage" alt="User Image" class="mb-2" />
       </div>
-      <div class="d-flex flex-column">
+      <div id="userDetail" class="d-flex flex-column">
         <p class="mb-0"><strong>Nome:</strong> {{ user.name }}</p>
         <p class="mb-0"><strong>Cognome:</strong> {{ user.surname }}</p>
         <p class="mb-0"><strong>Username:</strong> {{ user.username }}</p>
