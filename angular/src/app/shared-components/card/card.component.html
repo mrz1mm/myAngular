@@ -6,7 +6,9 @@
       alt="{{ filmsCard.title }}"
     />
   </a>
-  <div class="card-body d-flex flex-column align-items-center">
+  <div
+    class="card-body d-flex flex-column align-items-center justify-content-center"
+  >
     <div class="d-flex">
       <a routerLink="/filmDetail/{{ filmsCard.id }}">
         <h5 class="card-title text-center">{{ filmsCard.title }}</h5></a
@@ -17,7 +19,9 @@
         (click)="toggleFavourite($event)"
       ></i>
     </div>
-    <p class="card-text">{{ filmsCard.release_date }}</p>
-    <p class="card-text">{{ filmsCard.description }}</p>
+    <div class="text-center">
+      <p class="card-text">{{ filmsCard.release_date }}</p>
+      <p class="card-text">{{ filmsCard.description }}</p>
+    </div>
   </div>
 </div>

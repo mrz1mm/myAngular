@@ -1,6 +1,6 @@
-<section class="form-signin w-100 m-auto">
+<section class="form-signin m-auto mt-5">
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <h1 class="h3 text-center mb-3 fw-normal">REGISTRATI</h1>
 
     <!-- Parte anagrafica -->
     <div class="border p-3 mb-3">
@@ -157,7 +157,7 @@
     </div>
 
     <div class="text-center">
-      <p>Utente già registrato? <a routerLink="auth/login">Clicca qui!</a></p>
+      <p>Utente già registrato? <a routerLink="/auth/login">Clicca qui!</a></p>
     </div>
 
     <button class="btn btn-primary py-2" type="submit">Sign in</button>

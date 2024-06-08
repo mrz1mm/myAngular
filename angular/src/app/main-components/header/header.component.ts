@@ -12,10 +12,13 @@ import { FilmService } from '../../services/film.service';
 })
 export class HeaderComponent {
   public route: ActivatedRoute = Inject(ActivatedRoute);
-  private filmSvc = Inject(FilmService);
   isLoggedIn$: Observable<boolean>;
 
-  constructor(private authSvc: AuthService, private searchSvc: SearchService) {
+  constructor(
+    private authSvc: AuthService,
+    private searchSvc: SearchService,
+    private filmSvc: FilmService
+  ) {
     this.isLoggedIn$ = this.authSvc.isLoggedIn$;
   }
 

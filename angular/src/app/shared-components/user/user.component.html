@@ -1,11 +1,12 @@
-<div class="align-items-baseline" *ngIf="userCard">
-  <img
-    src="{{ userCard.userImage }}"
-    class="img-fluid rounded-start"
-    alt="avatar img"
-  />
-</div>
-<div class="col-8 col-lg-9">
+<div class="d-flex justify-content-center align-items-center" *ngIf="userCard">
+  <div>
+    <img
+      src="{{ userCard.userImage }}"
+      class="img-fluid me-2"
+      alt="avatar img"
+    />
+  </div>
+
   <div class="card-body ps-0">
     <h5 class="card-title">
       {{ userCard.username }}

@@ -14,13 +14,7 @@
       <h2>All Users</h2>
     </div>
 
-    <div class="col" *ngFor="let user of usersArray">
-      <ul>
-        <li>{{ user.name }}</li>
-      </ul>
-    </div>
-
-    <div class="col" *ngFor="let user of usersArray">
+    <div class="mb-3" *ngFor="let user of usersArray">
       <app-user [userCard]="user"></app-user>
     </div>
   </div>
