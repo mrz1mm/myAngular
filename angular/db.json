@@ -12,6 +12,19 @@
       "username": "mr_z1m",
       "confirmPassword": "CiaoCiao.88$",
       "id": 1
+    },
+    {
+      "email": "roberto.bolle@gmail.com",
+      "password": "$2a$10$NNoUKILXNV/KnNggjw3r8utgeaFRjdS0r14LWy5rJuDjUt1e7uCW2",
+      "name": "Roberto",
+      "surname": "Bolle",
+      "gender": "male",
+      "dateBirth": "1995-10-25",
+      "biography": "Ballerino",
+      "userImage": "https://placedog.net/640/480?id=2",
+      "username": "Robby",
+      "confirmPassword": "CiaoCiao.88$",
+      "id": 2
     }
   ],
   "films": [
@@ -88,44 +101,24 @@
   ],
   "favourite-films": [
     {
+      "filmId": 1,
+      "userId": 2,
+      "id": 1
+    },
+    {
       "filmId": 2,
-      "userId": 1,
+      "userId": 2,
       "id": 2
     },
     {
-      "filmId": 1,
-      "userId": 1,
+      "filmId": 3,
+      "userId": 2,
       "id": 3
     },
     {
-      "filmId": 3,
-      "userId": 1,
-      "id": 4
-    },
-    {
       "filmId": 4,
-      "userId": 1,
-      "id": 5
-    },
-    {
-      "filmId": 5,
-      "userId": 1,
-      "id": 6
-    },
-    {
-      "filmId": 6,
-      "userId": 1,
-      "id": 7
-    },
-    {
-      "filmId": 7,
-      "userId": 1,
-      "id": 8
-    },
-    {
-      "filmId": 8,
-      "userId": 1,
-      "id": 9
+      "userId": 2,
+      "id": 4
     }
   ]
 }

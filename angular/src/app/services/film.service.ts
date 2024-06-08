@@ -13,7 +13,6 @@ import {
 import { environment } from '../../environments/environment';
 import { iFavouriteFilm } from '../interfaces/i-favourite-film';
 import { AuthService } from '../auth/auth.service';
-import { SearchService } from './search.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,11 +20,11 @@ import { SearchService } from './search.service';
 export class FilmService {
   private http = inject(HttpClient);
   private authSvc = inject(AuthService);
-  private searchSvc = inject(SearchService);
 
   private filmsSubject = new BehaviorSubject<iFilm[]>([]);
   films$ = this.filmsSubject.asObservable();
   private films: iFilm[] = [];
+  private originalFilms: iFilm[] = []; // copia dell'array originale
 
   private favouriteFilmsSubject = new BehaviorSubject<iFavouriteFilm[]>([]);
   favouriteFilms$ = this.favouriteFilmsSubject.asObservable();
@@ -42,7 +41,7 @@ export class FilmService {
     this.getAllFavouriteFilms().subscribe();
   }
 
-  // metodo per ottenere tutti i film
+  // Metodo per ottenere tutti i film
   getAllFilms(): void {
     this.http
       .get<iFilm[]>(this.filmsUrl)
@@ -53,6 +52,7 @@ export class FilmService {
       )
       .subscribe((films) => {
         this.films = films;
+        this.originalFilms = films; // Salva una copia dell'array originale che mi serve per il metodo searchByFilmsName
         this.filmsSubject.next(films);
       });
   }
@@ -64,13 +64,12 @@ export class FilmService {
     );
   }
 
-  // metodo per ottenere tutti i film preferiti
+  // Metodo per ottenere tutti i film preferiti
   getAllFavouriteFilms(): Observable<iFavouriteFilm[]> {
     return this.http.get<iFavouriteFilm[]>(this.favouriteFilmsUrl).pipe(
       tap((favouriteFilms) => {
         this.favouriteFilms = favouriteFilms;
         this.favouriteFilmsSubject.next(favouriteFilms);
-        console.log('service');
       }),
       catchError((error) =>
         throwError(
@@ -80,7 +79,7 @@ export class FilmService {
     );
   }
 
-  // metodo per aggiungere un film ai preferiti
+  // Metodo per aggiungere un film ai preferiti
   addFavouriteFilm(filmId: number, userId: number): Observable<void> {
     return this.http
       .post<iFavouriteFilm>(this.favouriteFilmsUrl, { filmId, userId })
@@ -98,7 +97,7 @@ export class FilmService {
       );
   }
 
-  // metodo per rimuovere un film dai preferiti
+  // Metodo per rimuovere un film dai preferiti
   removeFavouriteFilm(filmId: number, userId: number): Observable<void> {
     // Cerca il film nei preferiti
     return this.http
@@ -132,38 +131,25 @@ export class FilmService {
       );
   }
 
-  // metodo per cercare un film
+  // Metodo per cercare un film
   setSearchTerm(term: string): void {
     this.searchTermSubject.next(term);
     this.searchByFilmsName(term);
   }
 
-  // metodo per cercare un film in base al nome
+  // Metodo per cercare un film in base al nome
   searchByFilmsName(searchTerm: string): void {
-    const lowerCaseSearchTerm = searchTerm.toLowerCase();
-    const searchedFilms = this.films.filter((film) =>
-      film.title?.toLowerCase().includes(lowerCaseSearchTerm)
-    );
-    this.filmsSubject.next(searchedFilms);
-    this.films = searchedFilms;
-  }
-
-  // metodo per ottenere solo i film preferiti dell'utente attualmente loggato
-  getFavouriteFilmsByCurrentUser(): Observable<iFilm[]> {
-    return this.authSvc.user$.pipe(
-      map((user) => {
-        const favouriteFilms = this.favouriteFilms.filter(
-          (film) => film.userId === user!.id
-        );
-        console.log(user!.id);
-        const favouriteFilmIds = favouriteFilms.map((film) => film.filmId);
-        const favouriteFilmsData = this.films.filter((film) =>
-          favouriteFilmIds.includes(film.id)
-        );
-        this.filmsSubject.next(favouriteFilmsData);
-        console.log(favouriteFilmsData);
-        return favouriteFilmsData;
-      })
-    );
+    if (!searchTerm) {
+      // Se il termine di ricerca è vuoto, ripristina l'array originale
+      this.filmsSubject.next(this.originalFilms);
+      this.films = this.originalFilms;
+    } else {
+      const lowerCaseSearchTerm = searchTerm.toLowerCase();
+      const searchedFilms = this.originalFilms.filter((film) =>
+        film.title?.toLowerCase().includes(lowerCaseSearchTerm)
+      );
+      this.filmsSubject.next(searchedFilms);
+      this.films = searchedFilms;
+    }
   }
 }

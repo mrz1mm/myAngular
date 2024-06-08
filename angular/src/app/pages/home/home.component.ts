@@ -19,14 +19,12 @@ export class HomeComponent implements OnInit {
     this.filmSvc.films$.subscribe((films) => {
       if (films) {
         this.filmsArray = films;
-        console.log(this.filmsArray);
       }
     });
 
     this.userSvc.users$.subscribe((users) => {
       if (users) {
         this.usersArray = users;
-        console.log(this.usersArray);
       }
     });
   }

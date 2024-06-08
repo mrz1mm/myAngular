@@ -37,13 +37,13 @@ export class ProfileComponent {
   }
 
   loadFavouriteFilmsDetails() {
-    this.favouriteFilmsArray = [];
-    this.appoggioArray.forEach((favFilm) => {
-      this.filmSvc.getFilmById(favFilm.filmId).subscribe((film) => {
-        if (film) {
-          this.favouriteFilmsArray.push(film);
-        }
-      });
+    this.filmSvc.films$.subscribe((films) => {
+      this.favouriteFilmsArray = films.filter((film) =>
+        this.appoggioArray.some(
+          (favFilm) =>
+            favFilm.filmId === film.id && favFilm.userId === this.user!.id
+        )
+      );
     });
   }
 }
