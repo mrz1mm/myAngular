@@ -15,6 +15,7 @@ export class SearchService {
   }
 
   setSearchTerm(term: string) {
-    this.filmSvc.searchFilms(term);
+    this.searchTermSubject.next(term);
+    this.filmSvc.setSearchTerm(term);
   }
 }

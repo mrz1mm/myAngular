@@ -13,6 +13,7 @@ import {
 import { environment } from '../../environments/environment';
 import { iFavouriteFilm } from '../interfaces/i-favourite-film';
 import { AuthService } from '../auth/auth.service';
+import { SearchService } from './search.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ import { AuthService } from '../auth/auth.service';
 export class FilmService {
   private http = inject(HttpClient);
   private authSvc = inject(AuthService);
+  private searchSvc = inject(SearchService);
 
   private filmsSubject = new BehaviorSubject<iFilm[]>([]);
   films$ = this.filmsSubject.asObservable();
@@ -31,6 +33,9 @@ export class FilmService {
 
   filmsUrl: string = `${environment.apiUrl}/films`;
   favouriteFilmsUrl: string = `${environment.apiUrl}/favourite-films`;
+
+  searchTermSubject = new BehaviorSubject<string>('');
+  searchTerm$ = this.searchTermSubject.asObservable();
 
   constructor() {
     this.getAllFilms();
@@ -128,15 +133,22 @@ export class FilmService {
   }
 
   // metodo per cercare un film
-  searchFilms(searchTerm: string): void {
-    const lowerCaseSearchTerm = searchTerm.toLowerCase();
-    const filteredFilms = this.films.filter((film) =>
-      film.title?.toLowerCase().includes(lowerCaseSearchTerm)
-    );
-    this.filmsSubject.next(filteredFilms);
+  setSearchTerm(term: string): void {
+    this.searchTermSubject.next(term);
+    this.searchByFilmsName(term);
   }
 
-  // Metodo per ottenere solo i film preferiti dell'utente attualmente loggato
+  // metodo per cercare un film in base al nome
+  searchByFilmsName(searchTerm: string): void {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    const searchedFilms = this.films.filter((film) =>
+      film.title?.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+    this.filmsSubject.next(searchedFilms);
+    this.films = searchedFilms;
+  }
+
+  // metodo per ottenere solo i film preferiti dell'utente attualmente loggato
   getFavouriteFilmsByCurrentUser(): Observable<iFilm[]> {
     return this.authSvc.user$.pipe(
       map((user) => {
